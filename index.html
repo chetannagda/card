@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -235,6 +235,336 @@
     </div>
 
     <script>
+        const profilePic = document.querySelector('.profile-pic');
+        const modal = document.getElementById('image-modal');
+        const closeModal = document.getElementById('close-modal');
+
+        profilePic.addEventListener('click', () => {
+            modal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
+ -->
+
+
+
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chetan Nagda - NFC Portfolio</title>
+    <link rel="icon" href="./assests/icons8-nfc-50.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4a148c;
+            --secondary-color: #7c43bd;
+            --text-color: #333;
+            --bg-color: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 420px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .banner {
+            width: 100%;
+            height: 150px;
+            background: var(--primary-color);
+            background-image: url(./assests/Programer\ _\ Background.jpeg); /* Replace this with your image URL or path */
+            background-size: cover; /* Ensures the image covers the whole banner */
+            background-position: center; /* Centers the image within the banner */
+            position: relative;
+        }
+        
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            position: absolute;
+            top: 90px;
+            left: 22%;
+            transform: translateX(-50%);
+            border: 5px solid #ffffff;
+            object-fit: cover;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+        .content {
+            text-align: center;
+            padding: 130px 30px 30px;
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-weight: 600;
+            position: absolute;
+            bottom: 69%;
+            left: 44%;
+            color: #000000;
+
+        }
+
+        /*.description {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }*/
+
+        .description-container {
+            margin-bottom: 30px;
+            height: 120px; /* Fixed container height */
+            overflow: hidden; /* Hide overflow content */
+          }
+          
+          .description {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+            margin: 0; /* Remove default margin */
+          }
+
+        .social-icons,
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+            justify-items: center; /* Centers the icons horizontally */
+            align-items: center;
+        }
+
+        .social-icons a,
+        .action-buttons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #f0f0f0;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover[title="Email"] {
+            background: #d93025;
+        }
+
+        .social-icons a:hover[title="Instagram"] {
+            background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
+        }
+
+        .social-icons a:hover[title="LinkedIn"] {
+            background: #0077b5;
+        }
+
+        .social-icons a:hover[title="GitHub"] {
+            background: #564b4b;
+            color: #ffffff;
+        }
+
+        .social-icons a:hover[title="Website"] {
+            background: #ffffff;
+            color: #000000;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-icons a:hover[title="Send SMS"] {
+            background: #1e88e5;
+        }
+
+        .action-buttons a:hover[title="WhatsApp"] {
+            background: #25d366;
+        }
+
+        .action-buttons a:hover[title="Google Pay"] {
+            background: linear-gradient(45deg, #4285f4, #ea4335, #fbbc05);
+        }
+
+        .action-buttons a:hover[title="Call or Save Contact"] {
+            background: #1976d2;
+            color: #ffffff;
+        }
+
+        .social-icons img,
+        .action-buttons img {
+            width: 35px;
+            height: 35px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons a:hover img,
+        .action-buttons a:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #ffffff;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .close-btn:hover {
+            background: var(--secondary-color);
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="banner"></div>
+        <img src="./assests/Profile.jpg" alt="Chetan Nagda" class="profile-pic">
+        <div class="content">
+            <h1>Chetan Nagda</h1>
+
+            <!-- <p class="description">Hi, I'm Chetan Nagda. Let's connect and create something amazing together!</p> -->
+            <div class="description-container">
+                <b><p class="description"></p></b>
+            </div>
+
+            <div class="social-icons">
+                <a href="mailto:chetan23rd@gmail.com" title="Email"><img src="./assests/icons8-gmail.svg" alt="Gmail"></a>
+                <a href="https://instagram.com/chetannagdaa" title="Instagram"><img src="./assests/icons8-instagram.svg" alt="Instagram"></a>
+                <a href="https://www.linkedin.com/in/chetan-nagda?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" title="LinkedIn"><img src="./assests/icons8-linkedin.svg" alt="LinkedIn"></a>
+                <a href="https://github.com/chetannagda" title="GitHub"><img src="./assests/icons8-github.svg" alt="GitHub"></a>
+                <a href="https://lakecityproperties.in" title="Website"><img src="./assests/icons8-url-50.png" alt="Website"></a>
+                <a href="sms:+91 6367426746?body=Hi%20Chetan" title="Send SMS"><img src="./assests/Google_Messages_icon_(2022).svg.svg" alt="SMS"></a>
+            </div>
+
+            <div class="action-buttons">
+                <a href="https://wa.me/6367426746?text=Hi" title="WhatsApp"><img src="./assests/icons8-whatsapp.svg" alt="WhatsApp"></a>
+                <a href="upi://pay?pa=chetan23rd-1@oksbi&pn=Chetan%20Nagda&aid=uGICAgIDToI7cDA&appid=com.google.android.apps.nbu.pps.google" title="Google Pay">
+                  <img src="./assests/icons8-google-pay.svg" alt="Google Pay">
+                </a>          
+                <a href="tel:+91 6367426746" id="add-contact" title="Call or Save Contact">
+                    <img src="./assests/Google_Contacts_icon_(2022).svg.svg" alt="Add to Contacts">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="image-modal">
+        <button class="close-btn" id="close-modal">&times;</button>
+        <img src="./assests/Profile.jpg" alt="Chetan Nagda">
+    </div>
+
+    <script>
+
+        const descriptionContainer = document.querySelector('.description-container');
+        const descriptionText = document.querySelector('.description');
+
+        // Define the description points
+        const descriptionPoints = [
+          `I am Chetan Nagda, a Computer Science Engineering student currently in my 3rd year at Techno India NJR.`,
+          `Web Development: Proficient in web development, with hands-on experience in creating dynamic and user-friendly websites.`,
+          `Problem-Solving Skills: Strong analytical and problem-solving abilities to tackle complex challenges efficiently.`,
+          `Database Management: Skilled in managing and working with databases, particularly SQL.`,
+          `Prompt Engineering: Expertise in crafting and refining prompts for AI systems, showcasing creativity and technical acumen.`,
+          `Volunteering Experience: Active in volunteering roles, bringing leadership, teamwork, and organizational skills to every initiative.`,
+        ];
+
+        // Function to update the description text
+        function updateDescription(index) {
+          descriptionText.textContent = '';
+          let typingIndex = 0;
+          const typingSpeed = 50; // Adjust typing speed (lower = faster)
+          const typingInterval = setInterval(() => {
+            if (typingIndex < descriptionPoints[index].length) {
+              descriptionText.textContent = descriptionPoints[index].slice(0, typingIndex + 1);
+              typingIndex++;
+            } else {
+              clearInterval(typingInterval);
+            }
+          }, typingSpeed);
+        }
+
+        // Initialize the description index
+        let descriptionIndex = 0;
+
+        // Update the description text every 10 seconds (adjust to your liking)
+        setInterval(() => {
+          if (descriptionIndex === 0) {
+            descriptionIndex++; // Skip the first line to avoid repetition
+          } else {
+            updateDescription(descriptionIndex);
+            descriptionIndex = (descriptionIndex + 1) % descriptionPoints.length;
+          }
+        }, 10000);
+
+            // Initial typing animation
+            updateDescription(0);
+
         const profilePic = document.querySelector('.profile-pic');
         const modal = document.getElementById('image-modal');
         const closeModal = document.getElementById('close-modal');
